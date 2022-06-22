@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+require 'win32ole'
+
+
 
 When(/^пользователь заходит на страницу "(.+?)"$/) do |url|
   visit url
@@ -29,12 +32,17 @@ end
 
 When (/^пользователь нажал на последний рекомендованный релиз$/) do
   release_button = find("//div[@id='download-links']//ul//li[@class='ridkexe']//a[@class='downloadlink download-recommended']")
+  text = Nokogiri::HTML(release_button).text
   release_button.click
   $logger.info("Выбор директории для скачивания")
   sleep 1
 end
 
-
+When(/^пользователь сохранил файл$/) do
+  wsh = WIN32OLE.new('Wscript.Shell')
+  wsh.AppActivate('Save As')
+  wsh.SendKeys('{ENTER}')
+end
 
 When(/^ввожу в поисковой строке текст "([^"]*)"$/) do |text|
   query = find("//input[@name='q']")
