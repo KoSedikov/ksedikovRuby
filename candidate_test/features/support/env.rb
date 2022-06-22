@@ -36,7 +36,7 @@ def browser_setup(browser = 'firefox')
   else
     Capybara.register_driver :firefox_driver do |app|
       profile = Selenium::WebDriver::Firefox::Profile.new
-      Selenium::WebDriver::Firefox.driver_path = 'configuration/geckodriver'
+      Selenium::WebDriver::Firefox.driver_path = 'configuration/geckodriver.exe'
       profile['browser.download.folderList'] = 2 # custom location
       profile['browser.download.dir'] = Dir.pwd + '/features/tmp/'
       profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/octet-stream, text/xml'
