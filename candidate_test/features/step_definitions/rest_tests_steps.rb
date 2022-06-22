@@ -34,6 +34,17 @@ When(/^добавляю пользователя c логином (\w+\.\w+) и�
   $logger.info(response.inspect)
 end
 
+When(/^удаляю пользователя c логином (\w+\.\w+) именем (\w+) фамилией (\w+) паролем ([\d\w@!#]+)$/) do
+|login, name, surname, password|
+
+  response = $rest_wrap.delete('/users', login: login,
+                             name: name,
+                             surname: surname,
+                             password: password,
+                             active: 1)
+  $logger.info(response.inspect)
+end
+
 When(/^добавляю пользователя с параметрами:$/) do |data_table|
   user_data = data_table.raw
 
