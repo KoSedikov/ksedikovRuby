@@ -27,10 +27,10 @@ When(/^пользователь нажал на кнопку скачивани�
   sleep 1
 end
 
-When (/^пользователь нажал на последний стабильный релиз для "([^"]*)" версии$/) do |text|
-  release_button = find("//div[@id='download-links']//ul//li[@class='ridkexe']//ya-tr-span[text()='#{text}']")
+When (/^пользователь нажал на последний рекомендованный релиз$/) do
+  release_button = find("//div[@id='download-links']//ul//li[@class='ridkexe']//a[@class='downloadlink download-recommended']")
   release_button.click
-  $logger.info("Скачан релиз #{text}")
+  $logger.info("Выбор директории для скачивания")
   sleep 1
 end
 
